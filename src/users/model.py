@@ -7,7 +7,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.dialects.postgresql import ARRAY
 
 from core.database.model import Base
-from users.utils.enums import PlatformRole
+from users.enum import PlatformRole
 
 
 if TYPE_CHECKING:
