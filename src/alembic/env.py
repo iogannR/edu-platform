@@ -9,8 +9,8 @@ from alembic import context
 
 from core.config import settings
 from core.database.model import Base
-from users.model import User
-from articles.model import Article
+from common.users.models.model import User
+from common.articles.models.model import Article
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

@@ -1,7 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from core.dal.base import BaseSQLAlchemyDAL
 from .model import Article
-from .schemas import ArticleCreate, ArticleUpdate, ArticleUpdatePartial
+from common.articles.schemas import ArticleCreate, ArticleUpdate, ArticleUpdatePartial
 
 
 class ArticleSQLAlchemyDAL(
@@ -11,7 +11,7 @@ class ArticleSQLAlchemyDAL(
 ):
     """Class that represents Article Data Access Layer"""
     
-    def __init__(self, session: AsyncSession, model: Article) -> None:
+    def __init__(self, session: AsyncSession) -> None:
         super().__init__(session, Article)
         
     async def get_by_title(self, title: str) -> Article | None:

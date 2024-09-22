@@ -5,6 +5,7 @@ from fastapi import FastAPI
 
 from core.config import settings
 from core.database.manager import db_manager
+from common.users.api import router as api_user_router
 
 
 @asynccontextmanager
@@ -17,6 +18,7 @@ app = FastAPI(
     title="Educational Platform",
     lifespan=lifespan,
 )
+app.include_router(api_user_router)
 
 @app.get("/message")
 async def send_message(message: str) -> dict:
