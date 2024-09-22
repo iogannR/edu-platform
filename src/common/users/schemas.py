@@ -12,7 +12,7 @@ class UserCreate(BaseModel):
         
 
 class UserRead(UserCreate):
-    password: bytes
+    password: str
     id: uuid.UUID
     
     model_config = ConfigDict(

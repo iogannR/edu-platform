@@ -48,7 +48,7 @@ class BaseSQLAlchemyDAL(Generic[M, C, U, P]):
     ) -> M:
         entity = await self._session.get(self._model, id_)
         if entity:
-            for key, value in schema.model_dump(exclude_unset=partial):
+            for key, value in schema.model_dump(exclude_none=partial).items():
                 setattr(entity, key, value)
             await self._session.commit()
             await self._session.refresh(entity)

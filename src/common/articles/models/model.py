@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import uuid
 from typing import TYPE_CHECKING
 
@@ -15,5 +17,5 @@ class Article(Base):
     body: Mapped[str] = mapped_column(Text)
     
     user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id"))
-    user: Mapped["User"] = relationship(back_populates="s_articles")
+    user_: Mapped[User] = relationship(back_populates="articles_")
     

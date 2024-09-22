@@ -1,7 +1,9 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from core.dal.base import BaseSQLAlchemyDAL
-from .model import Article
-from common.articles.schemas import ArticleCreate, ArticleUpdate, ArticleUpdatePartial
+from .models.model import Article
+from .schemas import ArticleCreate, ArticleUpdate, ArticleUpdatePartial
+
 
 
 class ArticleSQLAlchemyDAL(
@@ -9,11 +11,12 @@ class ArticleSQLAlchemyDAL(
         Article, ArticleCreate, ArticleUpdate, ArticleUpdatePartial,
     ]
 ):
-    """Class that represents Article Data Access Layer"""
+    """Article that represents User Data Access Layer"""
     
     def __init__(self, session: AsyncSession) -> None:
-        super().__init__(session, Article)
-        
-    async def get_by_title(self, title: str) -> Article | None:
+        super().__init__(session, Article) 
+
+    
+    async def get_by_title(self, title: str)-> Article | None:
         article = await self._session.get(Article, title)
         return article

@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from core.config import settings
 from core.database.manager import db_manager
 from common.users.api import router as api_user_router
-
+from common.articles.api import router as api_article_router
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
@@ -19,12 +19,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 app.include_router(api_user_router)
-
-@app.get("/message")
-async def send_message(message: str) -> dict:
-    return {
-        "message": message,
-    }
+app.include_router(api_article_router)
 
 
 if __name__ == "__main__":

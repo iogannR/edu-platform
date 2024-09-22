@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 from sqlalchemy import String
@@ -15,10 +17,10 @@ class User(Base):
     username: Mapped[str] = mapped_column(String(65), nullable=False, unique=True)
     email: Mapped[str] = mapped_column(String(85), unique=True)
     is_active: Mapped[bool] = mapped_column(default=True)
-    password: Mapped[bytes]
-    roles: Mapped[list[int]] = mapped_column(ARRAY(String), nullable=False)
+    password: Mapped[str]
+    roles: Mapped[list[PlatformRole]] = mapped_column(ARRAY(String), nullable=False)
     
-    s_articles: Mapped[list["Article"]] = relationship(back_populates="user")
+    articles_: Mapped[list["Article"]] = relationship(back_populates="user_")
           
     @property
     def is_admin(self) -> bool:
